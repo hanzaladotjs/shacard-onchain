@@ -1,16 +1,18 @@
 import './App.css'
-import Nav from './components/Nav'
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './components/Home'
+import Nav from './components/Nav'
 function App() {
 
 
   return (
-      <Router>
-    <div>
+  <Router>
+    <div className='base-font'>
       <Nav/>
     
-        <Routes>
-          <Route/>
+        <Routes >
+          <Route path='/'  element={<Home/>}/>
           <Route/>
           <Route/>
           <Route/>
