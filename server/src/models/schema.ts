@@ -7,7 +7,8 @@ export const usersTable = pgTable("users", {
   name: varchar({ length: 255 }).notNull(),
   username: varchar({length: 255}).notNull().unique(),
   email: varchar({ length: 255 }).notNull().unique(),
-  stage: varchar({length:255}).default("newbie")
+  stage: varchar({length:255}).default("newbie"),
+  password: text().notNull()
 });
 
 export const postsTable = pgTable("posts", {
