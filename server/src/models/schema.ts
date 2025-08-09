@@ -1,4 +1,4 @@
-import { foreignKey } from "drizzle-orm/gel-core";
+
 import { integer, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
@@ -14,20 +14,25 @@ export const postsTable = pgTable("posts", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     imageUrl: text(),
     caption: text(),
-    userId: varchar({length: 255}).references(()=> usersTable.id, {onDelete: "cascade"}).notNull(),
+    userId: integer().references(()=> usersTable.id, {onDelete: "cascade"}).notNull(),
     created_at: timestamp({withTimezone: true}).defaultNow()
 })
 
 
-export const offerTable = pgTable("offer", {
+export const offerTable = pgTable("offers", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     image: text().notNull(),
     title: varchar({length: 255}).notNull(),
     description: text(), 
+    userId:integer().references(()=> usersTable.id, {onDelete: "cascade"}).notNull(),
     created_at: timestamp({withTimezone: true}).defaultNow()
 })
 
-export const messageTable = pgTable("message", {
-    
+export const messageTable = pgTable("messages", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  content: text().notNull(),
+  senderId: integer().references(()=> usersTable.id, {onDelete: "cascade"}),
+  receiverId: integer().references(()=> usersTable.id, {onDelete:"cascade"}),
+  created_at: timestamp({withTimezone: true}).defaultNow() 
 })
 
