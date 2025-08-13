@@ -1,5 +1,6 @@
 import {Context } from "hono"
-import { signup } from "../services/user.service"
+import { signin, signup } from "../services/user.service"
+
 
 export const signUpController = async (c:Context) => {
 
@@ -7,15 +8,25 @@ export const signUpController = async (c:Context) => {
 
     const {email, password, username, name} = body
 
-    const user = await signup({email, password, username, name})
+    const db = c.get("db")
 
-    if(user){
-        return(
-        c.json({
-            msg: "user created"
-        }, 200)
+    const JWT_SECRET= c.get("jwt")
 
-    )
-        
+    const user = await signup({email, password, username, name, db, JWT_SECRET})
+
+    return c.json({
+        token: user.token
     }
+    )
+
+}
+
+export const signInController = async (c: Context) => {
+    const body = await c.req.json()
+    const db = c.get('db')
+    const JWT_SECRET = c.get("jwt")
+    const {identity, password} = body
+
+
+    
 }
