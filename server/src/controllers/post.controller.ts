@@ -62,9 +62,17 @@ export const postUpdateController = async (c: Context) => {
 
 }
 
-export const deletePostController = async (c:Context) => {
+export const postDeleteController = async (c:Context) => {
     const {id} = c.req.query()
     const db = c.get("db")
+
+    const findUpdateTarget = await db.select().from(postsTable).where(eq(postsTable.id, Number(id)))
+
+    if(findUpdateTarget.length === 0){
+        return c.json({
+            msg: "couldn't find target"
+        })
+    }
     const userId = c.get("userId")
 
     const purged = await deletePost({id, userId, db})

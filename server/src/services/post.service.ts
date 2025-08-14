@@ -26,17 +26,18 @@ export const updatePost = async ({imageUrl, caption, id, userId, db}:any) => {
       return {
          msg: "not updated"
       }
-   } else{
+   }
+
    return {
       msg: "post updated"
-   }}
+   }
 }
 
 
 export const deletePost = async({id, userId, db}:any) => {
    const purge = await db.delete(postsTable).where(and(eq(postsTable.id, id), eq(postsTable.userId, userId))).returning()
 
-   if(purge.length > 0){
+   if(purge.length == 0){
       return {
          msg: "not deleted"
       }
