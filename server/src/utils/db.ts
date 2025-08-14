@@ -1,7 +1,12 @@
-import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
+// db.ts
+import { drizzle } from 'drizzle-orm/postgres-js';
+import { Env } from 'hono';
+import postgres from 'postgres';
 
-const sql = neon(process.env.DATABASE_URL!);
-const db = drizzle({ client: sql });
+function getDb(dburi: string) {
+  const client =  postgres(dburi);
+  return drizzle(client);
+}
 
-export default db
+
+export default getDb
