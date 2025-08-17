@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { deletePost, post, updatePost } from "../services/post.service";
+import { deletePost, getPosts, post, updatePost } from "../services/post.service";
 import { postsTable } from "../models/schema";
 import { eq } from "drizzle-orm";
 
@@ -8,6 +8,16 @@ interface postBody {
     caption: string
 }
 
+export const getPostsController = async (c:Context) => {
+    const db = c.get("db")
+
+    const posts = await getPosts({db})
+
+    return c.json({
+        msg: posts.msg,
+        posts: posts.posts
+    }, 200)
+}
 
 export const postController = async (c:Context) => {
     const body = await c.req.json()
@@ -32,7 +42,7 @@ export const postController = async (c:Context) => {
 
 export const postUpdateController = async (c: Context) => {
  const  db = c.get("db")
-    const {id} = await c.req.query()
+    const id = c.req.query("id")
 
     
 

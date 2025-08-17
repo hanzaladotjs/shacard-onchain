@@ -1,8 +1,8 @@
-import { Context, Hono, Next } from "hono";
+import { Context, Next } from "hono";
 import { verify } from "hono/jwt";
 
 
-async function middleware(c: Context, next: Next) {
+export default async function middleware(c: Context, next: Next) {
 
     const JWT_SECRET = c.get("jwt")
 
@@ -11,8 +11,6 @@ async function middleware(c: Context, next: Next) {
             msg: "no access token"
         })
     }
-
-
 
     const authHeader = c.req.header("authorization")
 
