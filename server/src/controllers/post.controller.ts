@@ -42,7 +42,7 @@ export const postController = async (c:Context) => {
 
 export const postUpdateController = async (c: Context) => {
  const  db = c.get("db")
-    const {id} = await c.req.query()
+    const id = c.req.query("id")
 
     
 

@@ -3,7 +3,7 @@ import { postsTable } from "../models/schema"
 
 
 export const getPosts = async ({db}:any) => {
-   const posts = await db.select().from(postsTable)
+   const posts = await db.select({imageUrl: postsTable.imageUrl, caption: postsTable.caption, created: postsTable.created_at, userId: postsTable.userId}).from(postsTable)
    if(posts.length == 0){
       return {
          msg: "no posts"

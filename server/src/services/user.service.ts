@@ -2,26 +2,12 @@ import bcrypt from "bcryptjs"
 import { offerTable, postsTable, usersTable } from "../models/schema"
 import { eq } from "drizzle-orm"
 import { sign } from "hono/jwt"
-import { posix } from "path"
 
 
 
-type Signup = {
-    email: string,
-    username: string,
-    password: any,
-    name: string,
-    db: any,
-    JWT_SECRET: string
-}
-type Signin = {
-    identity: string,
-    password: string,
-    db: any,
-    JWT_SECRET: string
-}
 
-export const signup = async ({ email, username, password, name, db, JWT_SECRET }: Signup) => {
+
+export const signup = async ({ email, username, password, name, db, JWT_SECRET }: any) => {
 
     if (!email || !username || !password) {
         throw new Error("check inputs ")
@@ -49,7 +35,7 @@ export const signup = async ({ email, username, password, name, db, JWT_SECRET }
     }
 }
 
-export const signin = async ({ identity, password, db, JWT_SECRET }: Signin) => {
+export const signin = async ({ identity, password, db, JWT_SECRET }: any) => {
 
     if (!identity || !password) {
         throw new Error("check inputs")
@@ -59,7 +45,7 @@ export const signin = async ({ identity, password, db, JWT_SECRET }: Signin) => 
 
     const [existsUser] = await db.select().from(usersTable).where(isEmail ? eq(usersTable.email, identity) : eq(usersTable.username, identity))
 
-    if (existsUser.length == 0) {
+    if (!existsUser) {
         throw new Error("user deosnt exist")
     }
 
@@ -78,9 +64,9 @@ export const signin = async ({ identity, password, db, JWT_SECRET }: Signin) => 
 }
 
 export const myProfile = async ({ userId, db }: any) => {
-    const [user] = await db.select({ imageUrl: usersTable.imageUrl, name: usersTable.name, username: usersTable.username, stage: usersTable.stage }).from(usersTable).where(eq(usersTable.id, userId)).returning()
-    const [posts] = await db.select({ imageUrl: postsTable.imageUrl, caption: postsTable.caption, created: postsTable.created_at }).from(postsTable).where(eq(postsTable.userId, userId)).returning()
-    const [offers] = await db.select({ imageUrl: offerTable.image, title: offerTable.title, description: offerTable.description, created: offerTable.created_at }).returning()
+    const [user] = await db.select({ imageUrl: usersTable.imageUrl, name: usersTable.name, username: usersTable.username, stage: usersTable.stage }).from(usersTable).where(eq(usersTable.id, userId))
+    const posts = await db.select({ imageUrl: postsTable.imageUrl, caption: postsTable.caption, created: postsTable.created_at }).from(postsTable).where(eq(postsTable.userId, userId))
+    const offers = await db.select({ imageUrl: offerTable.image, title: offerTable.title, description: offerTable.description, created: offerTable.created_at })
 
 
     if (!user) {
@@ -97,8 +83,8 @@ export const myProfile = async ({ userId, db }: any) => {
 export const theirProfile = async ({id, db}: any) => {
 
     const [user] = await db.select({ imageUrl: usersTable.imageUrl, name: usersTable.name, username: usersTable.username, stage: usersTable.stage }).from(usersTable).where(eq(usersTable.id, id)).returning()
-    const [posts] = await db.select({ imageUrl: postsTable.imageUrl, caption: postsTable.caption, created: postsTable.created_at }).from(postsTable).where(eq(postsTable.userId, id)).returning()
-    const [offers] = await db.select({ imageUrl: offerTable.image, title: offerTable.title, description: offerTable.description, created: offerTable.created_at }).from(offerTable).where(eq(offerTable.userId, id)).returning()
+    const posts = await db.select({ imageUrl: postsTable.imageUrl, caption: postsTable.caption, created: postsTable.created_at }).from(postsTable).where(eq(postsTable.userId, id)).returning()
+    const offers = await db.select({ imageUrl: offerTable.image, title: offerTable.title, description: offerTable.description, created: offerTable.created_at }).from(offerTable).where(eq(offerTable.userId, id)).returning()
 
     if (!user) {
         throw new Error("something is wrong")
