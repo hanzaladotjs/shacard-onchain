@@ -1,5 +1,5 @@
 import { Context } from "hono"
-import { signin, signup } from "../services/user.service"
+import { myProfile, signin, signup } from "../services/user.service"
 
 
 export const signUpController = async (c: Context) => {
@@ -34,4 +34,45 @@ export const signInController = async (c: Context) => {
     })
 
 
+}
+
+export const myProfileController = async ( c: Context) => {
+    const db= c.get("db")
+    const userId = c.get("userId")
+
+    const myProfileData = await myProfile({userId, db})
+
+    if(!myProfileData){
+        return c.json({
+            msg: "error"
+        })
+    }
+
+    return c.json({
+        userDetails: myProfileData.user,
+        postsOfUser: myProfileData.posts,
+        offersOfUser: myProfileData.offers,
+        msg: myProfileData.msg
+    })
+}
+
+export const theirProfileController = async (c: Context) => {
+    const db= c.get("db")
+    
+    const id = c.req.query()
+
+    const theirProfileData = await myProfile({id, db})
+
+    if(!theirProfileData){
+        return c.json({
+            msg: "error"
+        })
+    }
+
+    return c.json({
+        userDetails: theirProfileData.user,
+        postsOfUser: theirProfileData.posts,
+        offersOfUser: theirProfileData.offers,
+        msg: theirProfileData.msg
+    })
 }

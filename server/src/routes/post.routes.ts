@@ -1,9 +1,10 @@
 import { Hono } from "hono";
-import { postController, postDeleteController, postUpdateController } from "../controllers/post.controller";
-import middleware from "../middlewares";
+import { getPostsController, postController, postDeleteController, postUpdateController } from "../controllers/post.controller";
+
 
 export const postRouter = new Hono()
 
+postRouter.get("/get",  getPostsController)
 postRouter.post("/send",middleware, postController)
 postRouter.put("/update",middleware, postUpdateController)
 postRouter.delete("/del",middleware, postDeleteController)

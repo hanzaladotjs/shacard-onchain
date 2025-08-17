@@ -1,6 +1,21 @@
 import { and, eq } from "drizzle-orm"
 import { postsTable } from "../models/schema"
 
+
+export const getPosts = async ({db}:any) => {
+   const posts = await db.select().from(postsTable)
+   if(posts.length == 0){
+      return {
+         msg: "no posts"
+      }
+   }
+   return {
+      msg: "posts fetched",
+      posts: posts
+   }
+
+}
+
 export const post = async ({imageUrl, caption, userId, db}:any) => {
 
     const insert=  await db.insert(postsTable).values({
