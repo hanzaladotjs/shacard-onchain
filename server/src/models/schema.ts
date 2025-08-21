@@ -1,5 +1,5 @@
 
-import { integer, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { integer, pgEnum, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -37,3 +37,18 @@ export const messageTable = pgTable("messages", {
   created_at: timestamp({withTimezone: true}).defaultNow() 
 })
 
+export const proposalStatusEnum = pgEnum("proposal_status", [
+  "pending",
+  "accepted",
+  "rejected"
+]);
+
+export const proposalTable = pgTable("proposals", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  whichOffer: integer().references(() => offerTable.id, {onDelete: "cascade"}),
+  theProposal: text().notNull(),
+  whoSent: integer().references(()=> usersTable.id, {onDelete: "cascade"}),
+  created_at: timestamp({withTimezone: true}).defaultNow(),
+  status: proposalStatusEnum("status").default("pending").notNull(),
+
+})

@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { getPostsController, postController, postDeleteController, postUpdateController } from "../controllers/post.controller";
-
+import middleware from "../middlewares";
 
 export const postRouter = new Hono()
 
