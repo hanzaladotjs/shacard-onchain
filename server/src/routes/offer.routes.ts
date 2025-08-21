@@ -6,7 +6,8 @@ export const offerRouter = new Hono()
 
 offerRouter.get("/", getOffersController)
 offerRouter.post("/post", middleware, postOfferController)
-offerRouter.put("/update:id", middleware, updateOfferController)
-offerRouter.delete("/update:id", middleware, deleteOfferController)
+offerRouter.put("/update", middleware, updateOfferController)
+offerRouter.delete("/update", middleware, deleteOfferController)
+
 
 
