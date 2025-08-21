@@ -4,9 +4,6 @@ import { eq } from "drizzle-orm"
 import { sign } from "hono/jwt"
 
 
-
-
-
 export const signup = async ({ email, username, password, name, db, JWT_SECRET }: any) => {
 
     if (!email || !username || !password) {
@@ -87,7 +84,9 @@ export const theirProfile = async ({id, db}: any) => {
     const offers = await db.select({ imageUrl: offerTable.image, title: offerTable.title, description: offerTable.description, created: offerTable.created_at }).from(offerTable).where(eq(offerTable.userId, id)).returning()
 
     if (!user) {
-        throw new Error("something is wrong")
+        return {
+            msg: "error"
+        }
     }
 
     return {
