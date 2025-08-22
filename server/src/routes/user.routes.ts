@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { myProfileController, signInController, signUpController, theirProfileController, updateProfileController } from "../controllers/user.controller";
+import { exploreAllUsersController, myProfileController, signInController, signUpController, theirProfileController, updateProfileController } from "../controllers/user.controller";
 import middleware from "../middlewares";
 
 
@@ -10,3 +10,4 @@ userRouter.post("/signin", signInController)
 userRouter.get("/me", middleware, myProfileController)
 userRouter.get("/them", theirProfileController)
 userRouter.put("/update", middleware, updateProfileController)
+userRouter.get("/explore", exploreAllUsersController)

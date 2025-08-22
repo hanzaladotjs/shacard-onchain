@@ -4,8 +4,9 @@ import { seeInbox, seeMessages, sendMessage } from "../services/message.services
 export const sendMessageController = async (c: Context) => {  
     const db = c.get("db")
     const userId = c.get("userId")
+    const receiverId = c.req.query("receiverId")
     
-    const { content, receiverId } = await c.req.json()
+    const { content } = await c.req.json()
 
     const message = await sendMessage({ db, content, userId, receiverId })
 
@@ -38,5 +39,5 @@ export const seeInboxController = async (c: Context) => {
         msg: inbox.msg,
         inbox: inbox.inbox
     }, 200)
-    
+
 }

@@ -1,7 +1,9 @@
 import { and, asc, desc, eq, or } from "drizzle-orm"
-import { messageTable } from "../models/schema"
+import { messageTable, proposalTable } from "../models/schema"
 
 export const sendMessage = async ({db, content, userId, receiverId}: any) => {
+
+    // const permission = await db.select().from(proposalTable).where(and(eq(proposalTable.status, "accepted"), eq(proposalTable.whoSent, userId), eq(proposalTable.whichOffer,))))
 
     const [message] = await db.insert(messageTable).values({ 
         content: content, 
