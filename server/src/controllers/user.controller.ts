@@ -1,5 +1,5 @@
 import { Context } from "hono"
-import { myProfile, signin, signup } from "../services/user.service"
+import { exploreAllUsers, myProfile, signin, signup, updateProfile } from "../services/user.service"
 
 type signupBody = {
     email: string, 
@@ -22,7 +22,7 @@ export const signUpController = async (c: Context) => {
 
     const db = c.get("db")
 
-    const JWT_SECRET = c.get("jwt")
+    const JWT_SECRET = c.env.JWT_SECRET
 
     const register = await signup({ email, password, username, name, db, JWT_SECRET })
 
@@ -36,7 +36,7 @@ export const signUpController = async (c: Context) => {
 export const signInController = async (c: Context) => {
     const body = await c.req.json()
     const db = c.get('db')
-    const JWT_SECRET = c.get("jwt")
+    const JWT_SECRET = c.env.JWT_SECRET
     const { identity, password } : siginBody = body
 
     const login = await signin({ identity, password, db, JWT_SECRET })
@@ -88,3 +88,27 @@ export const theirProfileController = async (c: Context) => {
         msg: theirProfileData.msg
     })
 }
+
+export const updateProfileController = async (c: Context) => {
+    const db = c.get("db")
+    const userId = c.get("userId")
+    const body = await c.req.json()
+    const { name, username, imageUrl } = body
+
+    const updateProfileData = await updateProfile({ userId, db, name, username, imageUrl })
+
+    return c.json({
+        msg: updateProfileData.msg
+    })
+}
+
+export const exploreAllUsersController = async (c: Context) => {
+    const db = c.get("db")
+    const exploreAllUsersData = await exploreAllUsers({ db })
+
+    return c.json({
+        users: exploreAllUsersData.users,
+        msg: exploreAllUsersData.msg
+    })
+}
+

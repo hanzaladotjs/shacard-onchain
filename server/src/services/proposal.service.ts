@@ -23,7 +23,7 @@ export const sendProposal = async ({db, userId, offerId, theProposal }:any) => {
 export const seeProposals = async ({db, offerId}:any) => {
     const see = await db.select().from(proposalTable).where(eq(proposalTable.whichOffer, offerId))
 
-    if(!see){
+    if(see.length == 0){
         return {
             msg: "no proposals yet"
         }

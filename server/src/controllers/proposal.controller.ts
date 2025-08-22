@@ -5,9 +5,9 @@ export const sendProposalController = async (c: Context) => {
     const db = c.get("db")
     const userId = c.get("userId")
 
-    const {  offerId, proposalText } = await c.req.json()
+    const {  offerId, theProposal } = await c.req.json()
 
-    const proposal = await sendProposal({ db, userId, offerId, proposalText });
+    const proposal = await sendProposal({ db, userId, offerId, theProposal  });
 
     return c.json({
         msg: proposal.msg

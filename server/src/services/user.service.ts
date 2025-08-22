@@ -49,8 +49,9 @@ export const signin = async ({ identity, password, db, JWT_SECRET }: any) => {
     const check = await bcrypt.compare(password, existsUser.password)
 
     if (!check) {
-        throw new Error("wrong password")
-    }
+        return {
+            msg: "auth error"
+        }    }
 
     const token = await sign({ username: existsUser.username, name: existsUser.name, id: existsUser.id, email: existsUser.email }, JWT_SECRET)
 
@@ -60,10 +61,28 @@ export const signin = async ({ identity, password, db, JWT_SECRET }: any) => {
 
 }
 
+export const updateProfile = async ({ userId, db, name, username, imageUrl }: any) => {
+    const [user] = await db.select().from(usersTable).where(eq(usersTable.id, userId))
+
+    if (!user) {
+        return {
+        
+            msg: "not updated"
+        }
+    }
+
+    const updatedUser = await db.update(usersTable).set({ name: name, username: username, imageUrl: imageUrl }).where(eq(usersTable.id, userId)).returning()
+
+    return {
+        user: updatedUser,
+        msg: "updated"
+    }
+}
+
 export const myProfile = async ({ userId, db }: any) => {
     const [user] = await db.select({ imageUrl: usersTable.imageUrl, name: usersTable.name, username: usersTable.username, stage: usersTable.stage }).from(usersTable).where(eq(usersTable.id, userId))
     const posts = await db.select({ imageUrl: postsTable.imageUrl, caption: postsTable.caption, created: postsTable.created_at }).from(postsTable).where(eq(postsTable.userId, userId))
-    const offers = await db.select({ imageUrl: offerTable.image, title: offerTable.title, description: offerTable.description, created: offerTable.created_at })
+    const offers = await db.select({ imageUrl: offerTable.image, title: offerTable.title, description: offerTable.description, created: offerTable.created_at }).where(eq(offerTable.userId, userId))
 
 
     if (!user) {
@@ -92,5 +111,20 @@ export const theirProfile = async ({id, db}: any) => {
     return {
 
         user: user, posts: posts, offers: offers, msg: "fetched"
+    }
+}
+
+export const exploreAllUsers = async ({db}:any) => {
+    const allUsers = await db.select({ username: usersTable.username, name: usersTable.name, image: usersTable.imageUrl, stage: usersTable.stage}).from(usersTable)
+
+    if(allUsers.length == 0){
+        return {
+            msg: "no user found"
+        }
+    }
+
+    return {
+        msg: "retrieved users",
+        users: allUsers
     }
 }
