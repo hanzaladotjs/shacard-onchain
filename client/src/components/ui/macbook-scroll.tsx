@@ -39,7 +39,7 @@ const MacbookScroll = ({
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end 20%"],
   });
 
   const [isMobile, setIsMobile] = useState(false);
@@ -60,7 +60,7 @@ const MacbookScroll = ({
     [0, 0.3],
     [0.6, isMobile ? 1 : 1.5],
   );
-  const translate = useTransform(scrollYProgress, [0, 1], [0, 1200]);
+  const translate = useTransform(scrollYProgress, [0, 0.5], [0, 700]);
   const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
   
 
@@ -82,7 +82,7 @@ const MacbookScroll = ({
       <div className="relative -z-10 h-[22rem] w-[32rem] overflow-hidden rounded-2xl bg-gray-200 dark:bg-[#272729]">
         {/* above keyboard bar */}
         <div className="relative h-10 w-full">
-          <div className="absolute inset-x-0 mx-auto h-4 w-[80%] bg-[#050505]" />
+          <div className="absolute inset-x-0 mx-auto h-4 w-[0%] bg-[#050505]" />
         </div>
         <div className="relative flex">
           <div className="mx-auto h-full w-[10%] overflow-hidden">
