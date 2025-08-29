@@ -60,14 +60,14 @@ const MacbookScroll = ({
     [0, 0.3],
     [0.6, isMobile ? 1 : 1.5],
   );
-  const translate = useTransform(scrollYProgress, [0, 1], [0, 1500]);
+  const translate = useTransform(scrollYProgress, [0, 1], [0, 1200]);
   const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
   
 
   return (
     <div
       ref={ref}
-      className="flex  md:min-h-[200vh] min-w-100 shrink-0 scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:mt-50"
+      className="flex md:min-h-[140vh] min-h-[80vh] min-w-100 shrink-0 scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:mt-50"
     >
      
       {/* Lid */}
