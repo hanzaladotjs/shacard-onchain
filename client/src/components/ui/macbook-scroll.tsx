@@ -67,7 +67,7 @@ const MacbookScroll = ({
   return (
     <div
       ref={ref}
-      className="flex md:min-h-[140vh] min-h-[80vh] min-w-100 shrink-0 scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:mt-50"
+      className="flex md:min-h-[140vh] min-h-[80vh] min-w-100 shrink-0 transform flex-col items-center justify-start py-0 [perspective:800px] scale-50 md:scale-100 md:mt-50"
     >
      
       {/* Lid */}
@@ -155,7 +155,7 @@ export const Lid = ({
         <img
           src={src as string}
           alt="aceternity logo"
-          className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
+          className="absolute inset-0 h-full w-full rounded-lg object-fill object-left-top"
         />
       </motion.div>
     </div>
