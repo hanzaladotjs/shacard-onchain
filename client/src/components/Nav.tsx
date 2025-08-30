@@ -19,6 +19,7 @@ const Nav = () => {
                 <Link to="/contact">Offers</Link>
                 <Link to="/login">Posts</Link>
                 <Link to="/about">Message</Link>
+                 <Link to="/profile">Profile</Link>
             </div>
 
             <div className="md:hidden inline">

@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import Nav from './components/Nav'
 import { useMobileNav } from './zustand/mobileNav'
 import { Link } from 'react-router-dom'
+import Signup from './pages/Signup'
+import Login from './pages/Login'
 function App() {
 
   const phoneView :any= useMobileNav((set:any) => set.mobileNav)
@@ -31,8 +33,8 @@ function App() {
              </div> : 
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route />
-            <Route />
+            <Route path='/signup' element={<Signup/>}/>
+            <Route path="/login" element={<Login/>}/>
             <Route />
             <Route />
 
