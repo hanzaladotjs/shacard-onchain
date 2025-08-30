@@ -13,24 +13,26 @@ const Home = () => {
           </div>
         </div>
 
+      
+
         <div className="flex justify-center mt-5 text-gray-400 text-md md:text-lg">
           barter skills. save money. avoid loneliness.
         </div>
 
         <div className="flex justify-center space-x-10 mt-10">
-          <button className="h-11 w-30 bg-orange-500 text-white rounded-lg">
+          <Link to="/signup" ><button className="h-11 w-30 bg-orange-500 text-white rounded-lg">
             Sign up
-          </button>
-          <button className="h-11 w-30 bg-orange-500 text-white rounded-lg">
+          </button> </Link>
+        <Link to="/login"> <button className="h-11 w-30 bg-orange-500 text-white rounded-lg">
             Log in
-          </button>
+          </button> </Link> 
         </div>
       </div>
 
       <div className="flex justify-center">
       <MacbookScroll src={hot} showGradient={false} />
       </div>
-      <div className="flex justify-center items-center mt-100">
+      <div className="flex justify-center items-center mt-100 md:mt-150">
         <div className="flex flex-col ">
           <div className="flex flex-col md:flex-row items-center md:justify-center text-3xl md:text-5xl space-x-2">
             <div>Revolutionizing </div>
