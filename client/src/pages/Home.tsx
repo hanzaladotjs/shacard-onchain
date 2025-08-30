@@ -7,13 +7,13 @@ const Home = () => {
     <div>
       <div className="animate-stamp">
         <div className="flex justify-center">
-          <div className="md:w-[800px] w-[300px] md:text-4xl tracking-wide text-gray-700  mt-40 flex flex-col ">
-            <div className="text-center md:text-5xl text-2xl mb-3">K2K is Knowledge to Knowledge.</div>
-            <div className="text-center">  a platform that connects people with the best resources, knowledge, and expertise.</div>
+          <div className="md:w-[800px] w-[300px] md:text-5xl tracking-wide text-gray-700  mt-40 flex flex-col ">
+            <div className="text-center md:text-6xl text-4xl mb-3">K2K is Knowledge to Knowledge.</div>
+            <div className="text-center text-xl">  a platform that connects people with the best resources, knowledge, and expertise.</div>
           </div>
         </div>
 
-        <div className="flex justify-center mt-5 text-gray-400 text-xs md:text-lg">
+        <div className="flex justify-center mt-5 text-gray-400 text-md md:text-lg">
           barter skills. save money. avoid loneliness.
         </div>
 
@@ -29,7 +29,7 @@ const Home = () => {
 
       <MacbookScroll src={hot} showGradient={false} />
 
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center mt-20">
         <div className="flex flex-col ">
           <div className="flex flex-col md:flex-row items-center md:justify-center text-3xl md:text-4xl space-x-2">
             <div>Revolutionizing </div>
@@ -37,7 +37,7 @@ const Home = () => {
 
           </div>
 
-          <div className="text-center w-75 md:w-200 mt-5 text-2xl text-gray-500 mb-30">
+          <div className="text-center w-75 md:w-200 mt-5 text-2xl text-gray-500 md:mb-30 mb-40">
             Experience the future of internet learning. Make meaningful connections & get addicted to knowledge.
 
           </div>
@@ -72,7 +72,7 @@ const Home = () => {
 
       </div>
 
-      <div className="flex justify-center space-x-2 items-center md:text-4xl tracking-widest text-2xl mt-30">
+      <div className="flex justify-center space-x-2 items-center md:text-4xl tracking-widest text-2xl md:mt-30 mt-50">
         <div>
           Join    the
         </div>
