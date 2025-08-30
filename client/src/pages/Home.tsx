@@ -27,17 +27,18 @@ const Home = () => {
         </div>
       </div>
 
+      <div className="flex justify-center">
       <MacbookScroll src={hot} showGradient={false} />
-
-      <div className="flex justify-center items-center mt-20">
+      </div>
+      <div className="flex justify-center items-center mt-100">
         <div className="flex flex-col ">
-          <div className="flex flex-col md:flex-row items-center md:justify-center text-3xl md:text-4xl space-x-2">
+          <div className="flex flex-col md:flex-row items-center md:justify-center text-3xl md:text-5xl space-x-2">
             <div>Revolutionizing </div>
             <div className="text-orange-500">Internet Learning </div>
 
           </div>
 
-          <div className="text-center w-75 md:w-200 mt-5 text-2xl text-gray-500 md:mb-30 mb-40">
+          <div className="text-center w-75 md:w-200 mt-5 md:text-3xl text-2xl text-gray-500 md:mb-30 mb-50">
             Experience the future of internet learning. Make meaningful connections & get addicted to knowledge.
 
           </div>
@@ -88,7 +89,7 @@ const Home = () => {
 
 
       </div>
-      <div className="flex justify-center mt-10 pb-30 border-b border-gray-100 shadow  mb-5 min-w-[100vw]">
+      <div className="flex justify-center mt-10 pb-30 border-b border-gray-200  mb-5 max-w-[100vw]">
         <button className=" px-10 py-4 border-3 rounded-md hover:bg-gray-100 border-orange-500 ">
           Explore offers
         </button>
