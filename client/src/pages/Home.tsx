@@ -7,8 +7,8 @@ const Home = () => {
     <div>
       <div className="animate-stamp">
         <div className="flex justify-center">
-          <div className="md:w-[800px] w-[300px] md:text-4xl tracking-wide text-gray-700  mt-40 flex flex-col ">
-            <div className="text-center md:text-5xl text-4xl mb-3">K2K is Knowledge to Knowledge.</div>
+          <div className="md:w-[800px] w-[300px] md:text-5xl tracking-wide text-gray-700  mt-40 flex flex-col ">
+            <div className="text-center md:text-6xl text-4xl mb-3">K2K is Knowledge to Knowledge.</div>
             <div className="text-center text-xl">  a platform that connects people with the best resources, knowledge, and expertise.</div>
           </div>
         </div>

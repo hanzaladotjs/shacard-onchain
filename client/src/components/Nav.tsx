@@ -1,7 +1,11 @@
 
 import { Link } from "react-router-dom"
+import { useMobileNav } from "../zustand/mobileNav"
 
 const Nav = () => {
+    const turnMobileViewOn = useMobileNav((state:any) => state.turnMobileOn)
+    const phoneView = useMobileNav((state:any) => state.mobileNav)
+
     return (
     <div className="fixed top-0 left-0 w-full z-50 backdrop-blur-xs bg-white/30">
         <div className="flex antialiased md:justify-around justify-between md:mx-0 mx-3 items-center text-l py-4">
@@ -18,7 +22,9 @@ const Nav = () => {
             </div>
 
             <div className="md:hidden inline">
-          <svg width="28px" height="28px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#9a9996"><path d="M3 5H21" stroke="#9a9996" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 12H21" stroke="#9a9996" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 19H21" stroke="#9a9996" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <button onClick={() => {if(phoneView == false) {turnMobileViewOn(true)} else {
+            turnMobileViewOn(false)}
+          }} > {!phoneView ?<svg width="28px" height="28px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#9a9996"><path d="M3 5H21" stroke="#9a9996" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 12H21" stroke="#9a9996" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 19H21" stroke="#9a9996" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg> : <svg width="28px" height="28px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#858585"><path d="M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426" stroke="#858585" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg> }</button> 
             </div>
         </div>
         </div>
