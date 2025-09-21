@@ -7,17 +7,10 @@
     "cf-typegen": "wrangler types --env-interface CloudflareBindings"
   },
   "dependencies": {
-    "bcrypt": "^6.0.0",
-    "bcryptjs": "^3.0.2",
-    "dotenv": "^17.2.1",
-    "drizzle-orm": "^0.44.4",
-    "hono": "^4.8.12",
-    "postgres": "^3.4.7"
+    "hono": "^4.9.8",
+    "pinata": "^2.5.0"
   },
   "devDependencies": {
-    "@types/node": "^24.3.0",
-    "drizzle-kit": "^0.31.4",
-    "tsx": "^4.20.3",
-    "wrangler": "^4.32.0"
+    "wrangler": "^4.4.0"
   }
 }

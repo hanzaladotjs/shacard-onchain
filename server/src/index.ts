@@ -1,26 +1,32 @@
-import { Context, Hono, Next } from 'hono'
-import { mainRouter } from './routes'
-import getDb from './utils/db';
+import { Hono } from 'hono'
+import { cors } from 'hono/cors';
+import { PinataSDK } from 'pinata'
+
+interface Bindings {
+  PINATA_JWT: string;
+  GATEWAY_URL: string;
+}
+
+const app = new Hono<{ Bindings: Bindings }>()
+
+app.use(cors())
 
 
-type Env = {
-  DATABASE_URL: string,
-  JWT_SECRET: string
-};
 
-const app = new Hono<{ Bindings: Env, Variables: any}>();
-app.use('*', async (c: Context, next: Next) => {
-  const db = getDb(c.env.DATABASE_URL)
-  c.set('db', db)
-  await next()
+app.get('/presigned_url', async (c) => {
+
+
+
+  const pinata = new PinataSDK({
+    pinataJwt: c.env.PINATA_JWT,
+    pinataGateway: c.env.GATEWAY_URL
+  })
+
+  const url = await pinata.upload.public.createSignedURL({
+    expires: 100 // Last for 60 seconds
+  })
+
+  return c.json({ url }, { status: 200 })
 })
-
-app.route("/api", mainRouter)
-
-app.onError((err:Error, c: Context) => {
-  console.error(err)
-  return c.json({ error: 'Something went wrong' }, 500)
-})
-
 
 export default app
