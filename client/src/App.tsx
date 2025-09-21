@@ -5,37 +5,33 @@ import Home from './pages/Home'
 import Nav from './components/Nav'
 import { useMobileNav } from './zustand/mobileNav'
 import { Link } from 'react-router-dom'
-import Signup from './pages/Signup'
-import Login from './pages/Login'
+import Mint from './pages/Mint'
+
 function App() {
 
   const phoneView :any= useMobileNav((set:any) => set.mobileNav)
   const turnMobileViewOn = useMobileNav((state:any) => state.turnMobileOn)
 
   return (
-    <Router>
+    <Router >
       <div className='base-font antialiased'>
         <Nav />
 
         <div className= {!phoneView ? 'flex justify-center ' : "flex justify-start"}>
           {phoneView ? <div className='mt-30 ml-4 flex flex-col space-y-10 text-2xl text-gray-500'>
 
-            <Link to="/" onClick={() => turnMobileViewOn(!phoneView)}> Home </Link>
-            <Link to="/offers" onClick={() => turnMobileViewOn(!phoneView)}> Offers </Link>
-            <Link to="/posts" onClick={() => turnMobileViewOn(!phoneView)}> Posts </Link>
-            <Link to="/messages" onClick={() => turnMobileViewOn(!phoneView)}> Messages</Link>
-            <Link to="/signup" onClick={() => turnMobileViewOn(!phoneView)}> SignUp</Link>
-            <Link to="/login" onClick={() => turnMobileViewOn(!phoneView)}> Login</Link>
-             
+            <Link to="/" onClick={() => turnMobileViewOn(!phoneView)}> home </Link>
+            <Link to="/mint" onClick={() => turnMobileViewOn(!phoneView)}> mint </Link>
+            <Link to="/minted" onClick={() => turnMobileViewOn(!phoneView)}> minted</Link>
+           
              
              
              
              </div> : 
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/signup' element={<Signup/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route />
+          
+            <Route path='/mint' element={<Mint/>} />
             <Route />
 
           </Routes> }

@@ -30,11 +30,27 @@ html, body {
 }
 
 .base-font {
-   font-family: "TikTok Sans", sans-serif;
+   font-family: 'Courier New', Courier, monospace;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+ 
+}
+
+.namefont {
+  font-family: "Bitcount Prop Double Ink", system-ui;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-variation-settings:
     "slnt" 0,
-    "wdth" 100;
+    "CRSV" 0.5,
+    "ELSH" 0,
+    "ELXP" 0,
+    "SZP1" 0,
+    "SZP2" 0,
+    "XPN1" 0,
+    "XPN2" 0,
+    "YPN1" 0,
+    "YPN2" 0;
 }

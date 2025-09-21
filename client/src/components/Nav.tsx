@@ -8,18 +8,17 @@ const Nav = () => {
 
     return (
     <div className="fixed top-0 left-0 w-full z-50 backdrop-blur-xs bg-white/30">
-        <div className="flex antialiased md:justify-around justify-between md:mx-0 mx-3 items-center text-l py-4">
+        <div className="flex  md:justify-around justify-between md:mx-0 mx-3 items-center  py-4">
 
             <div className="flex space-x-2 items-center text-gray-700 text-l md:text-2xl">
-               <div className="bg-orange-500 p-1 rounded-lg"> <svg width="28px" height="28px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff"><path d="M4 14V18.4C4 18.7314 4.26863 19 4.6 19H10" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19 14V18.4C19 18.7314 18.7314 19 18.4 19H14" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 5H18.4C18.7314 5 19 5.26863 19 5.6V10" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4 10V5.6C4 5.26863 4.26863 5 4.6 5H10" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 19V20C14 21.1046 13.1046 22 12 22C10.8954 22 10 21.1046 10 20V19" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4 10H5C6.10457 10 7 10.8954 7 12C7 13.1046 6.10457 14 5 14H4" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19 10H20C21.1046 10 22 10.8954 22 12C22 13.1046 21.1046 14 20 14H19" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 5V4C14 2.89543 13.1046 2 12 2C10.8954 2 10 2.89543 10 4V5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-                <Link to="/"> K2K</Link>
+              <svg width="32px" height="32px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ff7300"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 4.25C2.48122 4.25 1.25 5.48122 1.25 7V17C1.25 18.5188 2.48122 19.75 4 19.75H20C21.5188 19.75 22.75 18.5188 22.75 17V9.75H6C5.58579 9.75 5.25 9.41421 5.25 9C5.25 8.58579 5.58579 8.25 6 8.25H22.75V7C22.75 5.48122 21.5188 4.25 20 4.25H4Z" fill="#ff7300"></path></svg>
+                <Link to="/" className="base-font">shacard</Link>
             </div>
 
             <div className="flex space-x-8 text-gray-500 md:inline hidden">
-                <Link to="/contact">Offers</Link>
-                <Link to="/login">Posts</Link>
-                <Link to="/about">Message</Link>
-                 <Link to="/profile">Profile</Link>
+                <button className="hover:text-black">connect-wallet</button>
+                <Link to="/mint" className="hover:text-black">mint</Link>
+                 <Link to="/minted" className="hover:text-black">minted</Link>
             </div>
 
             <div className="md:hidden inline">
